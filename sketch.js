@@ -7,6 +7,7 @@ let somDoJogo;
 function preload() {
   imagemCenario = loadImage('imagens/cenario/floresta.png');
   imagemPersonagem = loadImage('imagens/personagem/correndo.png');
+  frameRate(40);
   somDoJogo = loadSound('sons/trilha_jogo.mp3');
 }
 
