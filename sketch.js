@@ -67,7 +67,6 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   cenario = new Cenario(imagemCenario, 3);
-  //personagem = new Personagem(imagemPersonagem);
   personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 110, 135, 
     220, 270);
   inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 52, 52, 
@@ -76,10 +75,17 @@ function setup() {
   //somDoJogo.loop();
 }
 
+function keyPressed() {
+  if (key === 'ArrowUp') {
+    personagem.pula();
+  }
+}
+
 function draw() {
   cenario.exibe();
   cenario.move();
   personagem.exibe();
+  personagem.aplicaGravidade();
   inimigo.exibe();
   inimigo.move();
 }

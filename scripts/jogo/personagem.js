@@ -4,10 +4,16 @@ class Personagem extends Animacao {
     super(matriz, imagem, x, largura, altura, larguraSprite, alturaSprite);
     
     this.frameAtual = 0;
+
+    this.yInicial = height - this.altura;
+    this.y = this.yInicial;
+
+    this.velocidadeDoPulo = 0;
+    this.gravidade = 3;
   }
 
   exibe() {
-    image(this.imagem, 0, height - 135, 110, 135, 
+    image(this.imagem, 0, this.y, 110, 135, 
       this.matriz[this.frameAtual][0], this.matriz[this.frameAtual][1], 220, 270
     );
     
@@ -18,6 +24,19 @@ class Personagem extends Animacao {
     this.frameAtual++;
     if(this.frameAtual >= this.matriz.length - 1) {
       this.frameAtual = 0;
+    }
+  }
+
+  pula() {
+    this.velocidadeDoPulo = -30;
+  }
+
+  aplicaGravidade() {
+    this.y = this.y + this.velocidadeDoPulo;
+    this.velocidadeDoPulo = this.velocidadeDoPulo + this.gravidade;
+
+    if(this.y > this.yInicial) {
+      this.y = this.yInicial;
     }
   }
 
