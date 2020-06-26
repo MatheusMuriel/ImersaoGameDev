@@ -2,12 +2,14 @@ let imagemCenario;
 let imagemGameOver;
 let imagemPersonagem;
 let imagemInimigo;
+let imagemInimigoGrande;
 
 let somDoJogo;
 let somDoPulo;
 let cenario;
 let personagem;
 let inimigo;
+let inimigoGrande;
 
 const matrizInimigo = [
   [0, 0],
@@ -38,7 +40,7 @@ const matrizInimigo = [
   [104, 624],
   [208, 624],
   [312, 624],
-  ]
+];
 
 const matrizPersonagem = [
   [0, 0],
@@ -59,6 +61,37 @@ const matrizPersonagem = [
   [660, 810],
 ];
 
+const matrizInimigoGrande = [
+  [0,0],
+  [400,0],
+  [800,0],
+  [1200,0],
+  [1600,0],
+  [0,400],
+  [400,400],
+  [800,400],
+  [1200, 400],
+  [1600, 400],
+  [0,800],
+  [400, 800],
+  [800, 800],
+  [1200, 800],
+  [1600, 800],
+  [0, 1200],
+  [400, 1200],
+  [800, 1200],
+  [1200, 1200],
+  [1600, 1200], 
+  [0, 1600],
+  [400, 1600],
+  [800, 1600],
+  [1200, 1600],
+  [1600, 1600],
+  [0, 2000],
+  [400, 2000],
+  [800, 2000],
+];
+
 function preload() {
   somDoJogo = loadSound('sons/trilha_jogo.mp3');
   somDoPulo = loadSound('sons/somPulo.mp3');
@@ -68,15 +101,16 @@ function preload() {
 
   imagemPersonagem = loadImage('imagens/personagem/correndo.png');
   imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
+  imagemInimigoGrande = loadImage('imagens/inimigos/troll.png');
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   cenario = new Cenario(imagemCenario, 3);
-  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 110, 135, 
-    220, 270);
-  inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 52, 52, 
-    104, 104)
+  personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 30, 110, 135, 220, 270);
+  inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 30, 52, 52, 104, 104)
+  inimigoGrande = new Inimigo(matrizInimigoGrande, imagemInimigoGrande,
+     width, 0, 200, 200, 400, 400);
   frameRate(40);
   //somDoJogo.loop();
 }
@@ -95,6 +129,8 @@ function draw() {
   personagem.aplicaGravidade();
   inimigo.exibe();
   inimigo.move();
+  inimigoGrande.exibe();
+  inimigoGrande.move();
 
   if (personagem.estaColidindo(inimigo)) {
     image(imagemGameOver, (width/2 - (412/2)), (height/2 - (78/2)), 412, 78);
