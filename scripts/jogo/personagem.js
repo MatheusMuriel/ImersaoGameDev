@@ -62,17 +62,18 @@ class Personagem extends Animacao {
   estaColisao(inimigo) {
     if (this.invencivel) return false;
 
-    const precisao = 0.7;
+    const precisaoHorizontal = 0.7;
+    const precisaoVertical = 1;
 
     const colisao = collideRectRect(
       this.x,
       this.y,
-      this.largura * precisao,
-      this.altura * precisao,
+      this.largura * precisaoHorizontal,
+      this.altura * precisaoVertical,
       inimigo.x,
       inimigo.y,
-      inimigo.largura * precisao,
-      inimigo.altura * precisao
+      inimigo.largura * precisaoHorizontal,
+      inimigo.altura * precisaoVertical
     );
 
     return colisao;
