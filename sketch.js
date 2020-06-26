@@ -1,4 +1,5 @@
 let imagemCenario;
+let imagemGameOver;
 let imagemPersonagem;
 let imagemInimigo;
 
@@ -61,7 +62,10 @@ const matrizPersonagem = [
 function preload() {
   somDoJogo = loadSound('sons/trilha_jogo.mp3');
   somDoPulo = loadSound('sons/somPulo.mp3');
+
   imagemCenario = loadImage('imagens/cenario/floresta.png');
+  imagemGameOver = loadImage('imagens/assets/game-over.png');
+
   imagemPersonagem = loadImage('imagens/personagem/correndo.png');
   imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
 }
@@ -93,7 +97,7 @@ function draw() {
   inimigo.move();
 
   if (personagem.estaColidindo(inimigo)) {
-    console.log('Colidiu');
+    image(imagemGameOver, (width/2 - (412/2)), (height/2 - (78/2)), 412, 78);
     noLoop();
   }
 }
