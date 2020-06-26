@@ -3,6 +3,7 @@ let imagemGameOver;
 let imagemPersonagem;
 let imagemInimigo;
 let imagemInimigoGrande;
+let imagemInimigoVoador;
 
 let somDoJogo;
 let somDoPulo;
@@ -10,6 +11,7 @@ let cenario;
 let personagem;
 let inimigo;
 let inimigoGrande;
+let inimigoVoador;
 
 const matrizInimigo = [
   [0, 0],
@@ -92,6 +94,25 @@ const matrizInimigoGrande = [
   [800, 2000],
 ];
 
+const matrizInimigoVoador = [
+  [0,0],
+  [200, 0],
+  [400, 0],
+  [0, 150],
+  [200, 150],
+  [400, 150],
+  [0, 300],
+  [200, 300],
+  [400, 300],
+  [0, 450],
+  [200, 450],
+  [400, 450],
+  [0, 600],
+  [200, 600],
+  [400, 600],
+  [0, 750],
+];
+
 function preload() {
   somDoJogo = loadSound('sons/trilha_jogo.mp3');
   somDoPulo = loadSound('sons/somPulo.mp3');
@@ -102,15 +123,21 @@ function preload() {
   imagemPersonagem = loadImage('imagens/personagem/correndo.png');
   imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
   imagemInimigoGrande = loadImage('imagens/inimigos/troll.png');
+  imagemInimigoVoador = loadImage('imagens/inimigos/gotinha-voadora.png');
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   cenario = new Cenario(imagemCenario, 3);
   personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 30, 110, 135, 220, 270);
-  inimigo = new Inimigo(matrizInimigo, imagemInimigo, width - 52, 30, 52, 52, 104, 104)
+
+  inimigo = new Inimigo(matrizInimigo, imagemInimigo, 
+    width - 52, 30, 52, 52, 104, 104, 8, 100);
+  inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, 
+    width - 52, 200, 100, 75, 200, 150, 8, 130);
   inimigoGrande = new Inimigo(matrizInimigoGrande, imagemInimigoGrande,
-     width, 0, 200, 200, 400, 400);
+     width, 0, 200, 200, 400, 400, 5, 500);
+  
   frameRate(40);
   //somDoJogo.loop();
 }
@@ -129,11 +156,13 @@ function draw() {
   personagem.aplicaGravidade();
   inimigo.exibe();
   inimigo.move();
+  inimigoVoador.exibe();
+  inimigoVoador.move();
   inimigoGrande.exibe();
   inimigoGrande.move();
 
   if (personagem.estaColidindo(inimigo)) {
-    image(imagemGameOver, (width/2 - (412/2)), (height/2 - (78/2)), 412, 78);
-    noLoop();
+    //image(imagemGameOver, (width/2 - (412/2)), (height/2 - (78/2)), 412, 78);
+    //noLoop();
   }
 }
