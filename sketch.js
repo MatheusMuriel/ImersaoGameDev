@@ -13,8 +13,6 @@ function setup() {
   };
 
   botaoGerenciador = new BotaoGerenciador("Start Game", width / 2, height / 2);
-  
-  
 
   //somDoJogo.loop();
   somDoJogo.setVolume(0.1);

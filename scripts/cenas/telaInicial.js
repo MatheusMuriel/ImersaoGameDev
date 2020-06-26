@@ -7,6 +7,7 @@ class TelaInicial {
     this._imagemFundo();
     this._texto();
     this._botao();
+    this._github();
   }
 
   _imagemFundo() {
@@ -24,12 +25,19 @@ class TelaInicial {
 
     textSize(20);
     fill("#fff");
-    text(`To jump use the key arrow up`, width / 2, height / 2 + 240);
+    text(`Para pular use a seta para cima`, width / 2, height / 2 + 240);
     fill(12);
   }
 
   _botao() {
     botaoGerenciador.y = (height / 7) * 5;
     botaoGerenciador.draw();
+  }
+
+  _github() {
+    fill("#fff");
+    //textAlign(LEFT, BOTTOM);
+    textSize(20);
+    text("Criado por Matheus Muriel", width - 110, height - 10);
   }
 }
