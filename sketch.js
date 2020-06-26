@@ -2,8 +2,9 @@ let imagemCenario;
 let imagemPersonagem;
 let imagemInimigo;
 
-let cenario;
 let somDoJogo;
+let somDoPulo;
+let cenario;
 let personagem;
 let inimigo;
 
@@ -59,6 +60,7 @@ const matrizPersonagem = [
 
 function preload() {
   somDoJogo = loadSound('sons/trilha_jogo.mp3');
+  somDoPulo = loadSound('sons/somPulo.mp3');
   imagemCenario = loadImage('imagens/cenario/floresta.png');
   imagemPersonagem = loadImage('imagens/personagem/correndo.png');
   imagemInimigo = loadImage('imagens/inimigos/gotinha.png');
@@ -78,6 +80,7 @@ function setup() {
 function keyPressed() {
   if (key === 'ArrowUp') {
     personagem.pula();
+    somDoPulo.play();
   }
 }
 
@@ -91,5 +94,6 @@ function draw() {
 
   if (personagem.estaColidindo(inimigo)) {
     console.log('Colidiu');
+    noLoop();
   }
 }
